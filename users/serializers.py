@@ -60,11 +60,7 @@ class UserSerializer(ModelSerializer):
             "create_at",
             "update_at",
         )
-        read_only_fields = (
-            "id",
-            "create_at",
-            "update_at",
-        )
+        read_only_fields = ("id",)
         extra_kwargs = {"password": {"write_only": True}}
 
     @atomic
@@ -93,7 +89,7 @@ class UserSerializer(ModelSerializer):
 class UserPasswordSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserFunctionModel
-        fields = ("password", )
+        fields = ("password",)
         extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):
@@ -110,4 +106,4 @@ class ChangePasswordSerializer(serializers.Serializer):
 class ChangeEmailSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserFunctionModel
-        fields = ("email", )
+        fields = ("email",)

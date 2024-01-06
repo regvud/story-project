@@ -13,6 +13,11 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
+    def create_superuser(self, email, password, **kwargs):
+        kwargs.setdefault("is_superuser", True)
+        admin = self.create_user(email, password, **kwargs)
+        return admin
+
     def change_password(self, email, password):
         UserFunctionModel = apps.get_model(settings.AUTH_USER_MODEL)
 
